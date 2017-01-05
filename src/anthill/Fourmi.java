@@ -38,4 +38,12 @@ public class Fourmi {
         
     }
     
+    public void deplacement(){
+        
+    }
+    
+    public void regarderAutour(){
+        
+    }
+    
 }
