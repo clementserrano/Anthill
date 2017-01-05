@@ -1,4 +1,4 @@
-package anthill;
+package Model;
 
 /**
  *
@@ -35,6 +35,14 @@ public class Fourmi {
     }
     
     public void depotPheromone() {
+        
+    }
+    
+    public void deplacement(){
+        
+    }
+    
+    public void regarderAutour(){
         
     }
     

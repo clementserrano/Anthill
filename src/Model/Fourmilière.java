@@ -1,4 +1,4 @@
-package anthill;
+package Model;
 
 /**
  *
