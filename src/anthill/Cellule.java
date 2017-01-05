@@ -28,12 +28,7 @@ public class Cellule {
         this.y = y;
     }
 
-    public <any> getFourmis() {
+    public ArrayList<Fourmi> getFourmis() {
         return fourmis;
-    }
-
-    public void setFourmis(<any> fourmis) {
-        this.fourmis = fourmis;
-    }
-    
+    }    
 }
