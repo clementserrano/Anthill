@@ -6,4 +6,7 @@ package Model;
  */
 public class Obstacle extends Cellule {
     
+    public Obstacle(){
+        
+    }
 }
