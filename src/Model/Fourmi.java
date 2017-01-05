@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author serra
@@ -8,10 +10,13 @@ public class Fourmi {
     int id;
     String etat;
     String direction;
+    ArrayList<Point> chemin;
+    
     public Fourmi(int id){
         this.id = id;
         this.etat = "recherche";
         this.direction = "N";
+        this.chemin = new ArrayList<Point>();
     }
 
     public int getId() {
