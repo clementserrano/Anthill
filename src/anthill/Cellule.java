@@ -1,14 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package anthill;
 
-/** fdp
- *
- * @author nathan
- */
-public class cellule {
+public class Cellule {
+    private int x;
+    private int y;
+    private ArrayList<Fourmi> fourmis;
+    public Cellule(){
+        x = 0;
+        y = 0;
+        fourmis = new ArrayList<Fourmi>;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public <any> getFourmis() {
+        return fourmis;
+    }
+
+    public void setFourmis(<any> fourmis) {
+        this.fourmis = fourmis;
+    }
     
 }
