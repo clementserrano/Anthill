@@ -1,5 +1,7 @@
 package anthill;
-//tbrgfd
+
+import java.util.ArrayList;
+
 public class Cellule {
     private int x;
     private int y;
@@ -7,7 +9,7 @@ public class Cellule {
     public Cellule(){
         x = 0;
         y = 0;
-        fourmis = new ArrayList<Fourmi>;
+        fourmis = new ArrayList<Fourmi>();
     }
 
     public int getX() {
