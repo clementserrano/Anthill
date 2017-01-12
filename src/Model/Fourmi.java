@@ -9,16 +9,20 @@ import java.util.HashMap;
  */
 public class Fourmi {
     int id;
+    int x;
+    int y;
     String etat;
     String direction;
-    ArrayList<Point> chemin;
+    ArrayList<int[]> chemin;
     Cellule[][] grille;
     
-    public Fourmi(int id, Cellule[][] grille){
+    public Fourmi(int id, int x, int y, Cellule[][] grille){
         this.id = id;
+        this.x=x;
+        this.y=y;
         this.etat = "recherche";
         this.direction = "N";
-        this.chemin = new ArrayList<Point>();
+        this.chemin = new ArrayList<int[]>();
         this.grille = grille;
     }
 
