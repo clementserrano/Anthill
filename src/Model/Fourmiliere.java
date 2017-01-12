@@ -5,12 +5,13 @@ package Model;
  * @author nathan
  */
 public class Fourmiliere extends Cellule {
-    int nbFourmi, qteNourriture;
+    private int nbFourmi;
+    private int qteNourriture;
     
-    public Fourmiliere(int x, int y, int n, int q){
+    public Fourmiliere(int x, int y, int n){
         super(x,y);
         nbFourmi = n;
-        qteNourriture = q;
+        qteNourriture = 0;
     }
 
     public int getNbFourmi() {
