@@ -20,6 +20,7 @@ public class Fourmi {
         this.direction = "N";
         this.chemin = new ArrayList<Point>();
         this.grille = grille;
+        
     }
 
     public int getId() {
