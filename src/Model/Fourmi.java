@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -49,8 +50,9 @@ public class Fourmi {
         
     }
     
-    public void regarderAutour(){
-        
+    public void regarderAutour(Point p){
+        HashMap<String, Cellule> hmap = new HashMap<String, Cellule>();
+        hmap.put("Nord", )
     }
     
 }
