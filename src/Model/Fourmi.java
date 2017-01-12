@@ -52,7 +52,14 @@ public class Fourmi {
     
     public void regarderAutour(Point p){
         HashMap<String, Cellule> hmap = new HashMap<String, Cellule>();
-        hmap.put("Nord", )
+        hmap.put("Nord", grille[p.getX()][p.getY()-1]);
+        hmap.put("Nord-Est", grille[p.getX()+1][p.getY()-1]);
+        hmap.put("Est", grille[p.getX()+1][p.getY()]);
+        hmap.put("Sud-Est", grille[p.getX()+1][p.getY()+1]);
+        hmap.put("Sud", grille[p.getX()][p.getY()+1]);
+        hmap.put("Sud-Ouest", grille[p.getX()-1][p.getY()+1]);
+        hmap.put("Ouest", grille[p.getX()-1][p.getY()]);
+        hmap.put("Nord-Ouest", grille[p.getX()-1][p.getY()-1]);
     }
     
 }
