@@ -50,7 +50,7 @@ public class Fourmi {
         
     }
     
-    public void regarderAutour(Point p){
+    public HashMap<String, Cellule> regarderAutour(Point p){
         HashMap<String, Cellule> hmap = new HashMap<String, Cellule>();
         hmap.put("N", grille[p.getX()][p.getY()-1]);
         hmap.put("NE", grille[p.getX()+1][p.getY()-1]);
@@ -60,6 +60,7 @@ public class Fourmi {
         hmap.put("SO", grille[p.getX()-1][p.getY()+1]);
         hmap.put("O", grille[p.getX()-1][p.getY()]);
         hmap.put("NO", grille[p.getX()-1][p.getY()-1]);
+        return hmap;
     }
     
 }
