@@ -12,9 +12,9 @@ public class Cellule {
     private ArrayList<Fourmi> fourmis;
     private int qtePheromone;
     
-    public Cellule(){
-        x = 0;
-        y = 0;
+    public Cellule(int x, int y){
+        this.x = x;
+        this.y = y;
         fourmis = new ArrayList<Fourmi>();
         qtePheromone = 0;
     }
