@@ -2,6 +2,10 @@ package Model;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author clementserrano
+ */
 public class Cellule {
     private int x;
     private int y;

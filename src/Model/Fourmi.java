@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author serra
+ * @author clementserrano
  */
 public class Fourmi {
     int id;
