@@ -8,8 +8,8 @@ public class Environnement {
     private Cellule[][] grille;
     private Fourmi[] fourmis;
 
-    public Environnement(){
-        this.grille = new Cellule[6][3];
+    public Environnement(int hauteur, int largeur){
+        this.grille = new Cellule[hauteur][largeur];
         for(int i = 0; i < 3; i++ ){
             fourmis[i] = new Fourmi(i, grille);
         }

@@ -11,12 +11,14 @@ public class Fourmi {
     String etat;
     String direction;
     ArrayList<Point> chemin;
+    Cellule[][] grille;
     
     public Fourmi(int id, Cellule[][] grille){
         this.id = id;
         this.etat = "recherche";
         this.direction = "N";
         this.chemin = new ArrayList<Point>();
+        this.grille = grille;
     }
 
     public int getId() {
