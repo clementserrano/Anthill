@@ -12,7 +12,7 @@ public class Fourmi {
     String direction;
     ArrayList<Point> chemin;
     
-    public Fourmi(int id){
+    public Fourmi(int id, Cellule[][] grille){
         this.id = id;
         this.etat = "recherche";
         this.direction = "N";

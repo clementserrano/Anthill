@@ -6,9 +6,13 @@ package Model;
  */
 public class Environnement {
     private Cellule[][] grille;
+    private Fourmi[] fourmis;
 
     public Environnement(){
         this.grille = new Cellule[6][3];
+        for(int i = 0; i < 3; i++ ){
+            fourmis[i] = new Fourmi(i, grille);
+        }
     }
     
     public Cellule[][] getGrille() {
