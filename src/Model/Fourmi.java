@@ -76,4 +76,16 @@ public class Fourmi {
         return hmap;
     }
     
+    public void deciderDirection(){
+        int c0 = 0, c1 = 5, c2 = 10, c3 = 20 , c4 = 50 , c5 = 20, c6 = 10, c7 = 5;
+        int sommeC = c0 + c1 + c2 + c3 + c4 + c5 + c6 + c7;
+        int[] tableauDeCi;
+        for(int i = 0; i < sommeC; i++){
+            
+        }
+        if(chemin.size() == 0){
+            
+        }
+    }
+    
 }
