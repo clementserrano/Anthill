@@ -25,7 +25,12 @@ public class Environnement {
 
     @Override
     public String toString() {
-        return "beaucoup de choses";
+        String res = "";
+        for(Cellule[] tc : grille){
+            for(Cellule c : tc){
+                res += 
+            }
+        }
     }
     
     public void detruireSource(Point p){
