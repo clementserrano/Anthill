@@ -63,16 +63,16 @@ public class Fourmi {
         
     }
     
-    public HashMap<String, Cellule> regarderAutour(Point p){
+    public HashMap<String, Cellule> regarderAutour(){
         HashMap<String, Cellule> hmap = new HashMap<String, Cellule>();
-        hmap.put("N", grille[p.getX()][p.getY()-1]);
-        hmap.put("NE", grille[p.getX()+1][p.getY()-1]);
-        hmap.put("E", grille[p.getX()+1][p.getY()]);
-        hmap.put("SE", grille[p.getX()+1][p.getY()+1]);
-        hmap.put("S", grille[p.getX()][p.getY()+1]);
-        hmap.put("SO", grille[p.getX()-1][p.getY()+1]);
-        hmap.put("O", grille[p.getX()-1][p.getY()]);
-        hmap.put("NO", grille[p.getX()-1][p.getY()-1]);
+        hmap.put("N", grille[x][y-1]);
+        hmap.put("NE", grille[x+1][y-1]);
+        hmap.put("E", grille[x+1][y]);
+        hmap.put("SE", grille[x+1][y+1]);
+        hmap.put("S", grille[x][y+1]);
+        hmap.put("SO", grille[x-1][y+1]);
+        hmap.put("O", grille[x-1][y]);
+        hmap.put("NO", grille[x-1][y-1]);
         return hmap;
     }
     
