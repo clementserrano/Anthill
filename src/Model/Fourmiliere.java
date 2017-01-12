@@ -4,12 +4,14 @@ package Model;
  *
  * @author nathan
  */
-public class Fourmiliere {
-    int nbFourmi, qteNourriture;
+public class Fourmiliere extends Cellule {
+    private int nbFourmi;
+    private int qteNourriture;
     
-    public Fourmiliere(int n, int q){
+    public Fourmiliere(int x, int y, int n){
+        super(x,y);
         nbFourmi = n;
-        qteNourriture = q;
+        qteNourriture = 0;
     }
 
     public int getNbFourmi() {
@@ -28,5 +30,8 @@ public class Fourmiliere {
         this.qteNourriture = qteNourriture;
     }
     
-    
+    @Override
+    public String toString() {
+        return "x";
+    }
 }
