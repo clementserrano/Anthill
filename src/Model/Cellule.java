@@ -40,5 +40,12 @@ public class Cellule {
 
     public ArrayList<Fourmi> getFourmis() {
         return fourmis;
-    }    
+    }  
+
+    @Override
+    public String toString() {
+        return " ";
+    }
+    
+    
 }

@@ -28,9 +28,11 @@ public class Environnement {
         String res = "";
         for(Cellule[] tc : grille){
             for(Cellule c : tc){
-                res += 
+                res += c+" ";
             }
+            res += "\n";
         }
+        return res;
     }
     
     public void detruireSource(Point p){

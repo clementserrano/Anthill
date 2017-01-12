@@ -4,10 +4,10 @@ package Model;
  *
  * @author Inflo
  */
-public class Source {
+public class Source extends Cellule {
     private int qteNourriture;
-    public Source(){
-        super();
+    public Source(int x, int y){
+        super(x,y);
     }
 
     public int getQteNourriture() {
@@ -20,5 +20,10 @@ public class Source {
     
     public void detruire(){
         
+    }
+    
+    @Override
+    public String toString() {
+        return "o";
     }
 }
