@@ -42,9 +42,17 @@ public class Fourmi {
     public String getDirection() {
         return direction;
     }
-
+    
     public void setDirection(String direction) {
         this.direction = direction;
+    }
+    
+    public int getX(){
+        return(x);
+    }
+    
+    public int getY(){
+        return(y);
     }
     
     public void depotPheromone() {
