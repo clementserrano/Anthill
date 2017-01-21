@@ -1,4 +1,4 @@
-package Model;
+package Anthill.model;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
