@@ -1,8 +1,6 @@
-package Model;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+package Anthill;
+import Anthill.model.Environnement;
+import Anthill.util.Readfile;
 import java.io.IOException;
 
 /**
