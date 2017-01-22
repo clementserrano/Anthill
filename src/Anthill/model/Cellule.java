@@ -3,7 +3,7 @@ package Anthill.model;
 import java.util.ArrayList;
 
 /**
- *
+ * Cellule constituant la grille de l'environnement.
  * @author clementserrano
  */
 public class Cellule {

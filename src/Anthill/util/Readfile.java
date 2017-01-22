@@ -10,22 +10,18 @@ import java.io.IOException;
  */
 public class Readfile {
 
-    public Readfile() {
-    }
-
-    //   public Readfile(String nomFichier) { }
-    public void Read(String fichier) throws IOException {
-
-        try ( //Environnement evt = new Environnement(9,9);
-                //evt.run();
-                BufferedReader in = new BufferedReader(new FileReader(fichier))) {
-                String line;
-                while ((line = in.readLine()) != null) {
-                    // Afficher le contenu du fichier
-                    System.out.println(line);
-                }
+    public String read(String fichier){
+        String res = "";
+        try{
+            BufferedReader in = new BufferedReader(new FileReader(fichier));
+            String line;
+            while ((line = in.readLine()) != null) {
+                res += line+'l';
+            }
         }catch(Exception e){
             e.printStackTrace();
+            System.exit(-2);
         }
+        return res;
     }
 }
