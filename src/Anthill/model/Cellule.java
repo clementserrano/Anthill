@@ -56,5 +56,13 @@ public class Cellule {
         return nbrFourmi;
     }
     
+      public void addQtePheromone(){
+        qtePheromone +=5;
+    }
+    
+    public void removeQtePheromone(){
+        if(qtePheromone > 0)
+            qtePheromone --;
+    }
     
 }
