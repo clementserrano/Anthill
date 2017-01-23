@@ -28,8 +28,8 @@ public class Fourmi {
 
     }
 
-    public void depotPheromone() {
-
+    public void depotPheromone(int x, int y) {
+        e.getGrille()[x][y].addQtePheromone();
     }
 
     public void deplacement() {
