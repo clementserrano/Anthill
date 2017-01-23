@@ -164,6 +164,6 @@ public class Fourmi {
             this.qteNourriture += 1;
         }
     }
-    // RESTE A FAIRE LE CHEMIN, LE TEST D'ARRET DU RDM
+    // RESTE A FAIRE LE CHEMIN, LE TEST D'ARRET DU RDM BITE
 
 }
