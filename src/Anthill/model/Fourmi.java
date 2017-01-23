@@ -25,6 +25,8 @@ public class Fourmi {
         this.etat = "recherche";
         this.direction = "N";
         this.chemin = new ArrayList<int[]>();
+        int[] pos = {x,y};
+        chemin.add(pos);
         this.e = e;
 
     }
@@ -35,6 +37,9 @@ public class Fourmi {
 
     public void deplacement() {
         if(etat == "recherche"){
+            deplacerAller();
+            int[] pos = {x,y};
+            chemin.add(pos);
             
         }else if(etat == "retour" && chemin.size()>1){
             chemin.remove(chemin.size());
@@ -61,7 +66,7 @@ public class Fourmi {
         return hmap;
     }
 
-    public void Deplacer() {
+    public void deplacerAller() {
         
         int p0, p1, p2, p3, p4, p5, p6, p7;             //qte phéromone
         int c0, c1, c2, c3, c4, c5, c6, c7;             //poids case
@@ -152,6 +157,13 @@ public class Fourmi {
         this.x = cell.getX();
         this.y = cell.getY();
         
+        if(cell instanceof Source){
+            Source s;
+            s = (Source) cell;
+            s.diminuerNourriture(e);
+            this.qteNourriture += 1;
+        }
     }
+    // RESTE A FAIRE LE CHEMIN, LE TEST D'ARRET DU RDM
 
 }
