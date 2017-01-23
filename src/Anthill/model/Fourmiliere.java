@@ -1,4 +1,4 @@
-package Model;
+package Anthill.model;
 
 /**
  *
@@ -8,9 +8,9 @@ public class Fourmiliere extends Cellule {
     private int nbFourmi;
     private int qteNourriture;
     
-    public Fourmiliere(int x, int y, int n){
+    public Fourmiliere(int x, int y){
         super(x,y);
-        nbFourmi = n;
+        nbFourmi = 0;
         qteNourriture = 0;
     }
 
