@@ -34,7 +34,7 @@ public class Cellule {
     public void setY(int y) {
         this.y = y;
     }
-    public int getqtePheromone(){
+    public int getQtePheromone(){
         return(qtePheromone);
     }
 

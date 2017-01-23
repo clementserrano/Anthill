@@ -16,6 +16,7 @@ public class Fourmi {
     private String direction;
     private ArrayList<int[]> chemin;
     private Environnement e;
+    private HashMap<String, Cellule> hmap;
 
     public Fourmi(int x, int y, Environnement e) {
         this.x = x;
@@ -41,7 +42,7 @@ public class Fourmi {
     }
 
     public HashMap<String, Cellule> regarderAutour() {
-        HashMap<String, Cellule> hmap = new HashMap<String, Cellule>();
+        hmap = new HashMap<String, Cellule>();
         Cellule[][] grille = e.getGrille();
         hmap.put("N", grille[x][y - 1]);
         hmap.put("NE", grille[x + 1][y - 1]);
@@ -54,39 +55,96 @@ public class Fourmi {
         return hmap;
     }
 
-    public void deciderDirection() {
-        int c0 = 0, c1 = 5, c2 = 10, c3 = 20, c4 = 50, c5 = 20, c6 = 10, c7 = 5;
-        int sommeC = c0 + c1 + c2 + c3 + c4 + c5 + c6 + c7;
-        int[] tableauDeCi = new int[sommeC];
-        for (int i = 0; i < sommeC; i++) {
-            if(i < c1){
-                tableauDeCi[i] = c1;
-            }
-            else if(i < c2){
-                tableauDeCi[i] = c2;
-            }
-            else if(i < c3){
-                tableauDeCi[i] = c3;
-            }
-            else if(i < c4){
-                tableauDeCi[i] = c4;
-            }
-            else if(i < c5){
-                tableauDeCi[i] = c5;
-            }
-            else if(i < c6){
-                tableauDeCi[i] = c6;
-            }
-            else if(i < c7){
-                tableauDeCi[i] = c7;
-            }
-        }
-        if (chemin.size() == 0) {
-
-        }
-        else{
+    public void Deplacer() {
+        
+        int p0, p1, p2, p3, p4, p5, p6, p7;             //qte phéromone
+        int c0, c1, c2, c3, c4, c5, c6, c7;             //poids case
+        c0 = c1 = c2 = c3 = c4 = c5 = c6 = c7 = 0;
+        p0 = e.getGrille()[x][y + 1].getQtePheromone();
+        p1 = e.getGrille()[x-1][y + 1].getQtePheromone();
+        p2 = e.getGrille()[x-1][y].getQtePheromone();
+        p3 = e.getGrille()[x-1][y - 1].getQtePheromone();
+        p4 = e.getGrille()[x][y-1].getQtePheromone();
+        p5 = e.getGrille()[x+1][y - 1].getQtePheromone();
+        p6 = e.getGrille()[x+1][y].getQtePheromone();
+        p7 = e.getGrille()[x+1][y + 1].getQtePheromone();
+        
+        switch(this.direction){
+            case "N":
+                c0 = 0; c1 = 5; c2 = 10; c3 = 20; c4 = 50; c5 = 20; c6 = 10; c7 = 5;
+            break;
             
+            case "NE":
+                c0 = 5; c1 = 0; c2 = 5; c3 = 10; c4 = 20; c5 = 50; c6 = 20; c7 = 10;
+            break;
+            
+            case "E":
+                c0 = 10; c1 = 5; c2 = 0; c3 = 5; c4 = 10; c5 = 20; c6 = 50; c7 = 20;
+            break;
+            
+            case "SE":
+                c0 = 20; c1 = 10; c2 = 5; c3 = 0; c4 = 5; c5 = 10; c6 = 20; c7 = 50;
+            break;
+            
+            case "S":
+                c0 = 50; c1 = 20; c2 = 10; c3 = 5; c4 = 0; c5 = 5; c6 = 10; c7 = 20;
+            break;
+            
+            case "SO":
+                c0 = 20; c1 = 50; c2 = 20; c3 = 10; c4 = 5; c5 = 0; c6 = 5; c7 = 10;
+            break;
+            
+            case "O":
+                c0 = 10; c1 = 20; c2 = 50; c3 = 20; c4 = 10; c5 = 5; c6 = 0; c7 = 5;
+            break;
+            
+            case "NO":
+                c0 = 5; c1 = 10; c2 = 20; c3 = 50; c4 = 20; c5 = 10; c6 =5; c7 = 0;
+            break;
         }
+        
+        c0 += p0; c1 += p1; c2 += p2; c3 += p3; c4 += p4; c5 += p5; c6 += p6; c7 += p7;
+        
+        int sommeC = c0 + c1 + c2 + c3 + c4 + c5 + c6 + c7;
+        String[] tableauDeCi = new String[sommeC];
+        for (int i = 0; i < sommeC; i++) {
+            if(i < c0){
+                tableauDeCi[i] = "S";
+            }
+            if(i < c1 + c0){
+                tableauDeCi[i] = "SO";
+            }
+            else if(i < c2 + c1 +c0){
+                tableauDeCi[i] = "O";
+            }
+            else if(i < c3 + c2 + c1 + c0){
+                tableauDeCi[i] = "NO";
+            }
+            else if(i < c4 + c3 + c2 + c1 + c0){
+                tableauDeCi[i] = "N";
+            }
+            else if(i < c5 + c4 + c3 + c2 + c1 + c0){
+                tableauDeCi[i] = "NE";
+            }
+            else if(i < c6 + c5 + c4 + c3 + c2 + c1 + c0){
+                tableauDeCi[i] = "E";
+            }
+            else if(i < c7 + c6 + c5 + c4 + c3 + c2 + c1 + c0){
+                tableauDeCi[i] = "SE";
+            }
+        }
+        Cellule cell;
+        String nouvDir;
+        do{
+           int rdm = (int)(Math.random()*(sommeC));
+           nouvDir = tableauDeCi[rdm];
+           cell = hmap.get(nouvDir);
+        }while(cell instanceof Obstacle);
+        
+        
+        this.direction = nouvDir;
+        this.x = cell.getX();
+        this.y = cell.getY();
         
     }
 
