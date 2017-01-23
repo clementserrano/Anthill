@@ -9,13 +9,13 @@ import java.util.ArrayList;
 public class Cellule {
     private int x;
     private int y;
-    private ArrayList<Fourmi> fourmis;
+    private int nbrFourmi;
     private int qtePheromone;
     
     public Cellule(int x, int y){
         this.x = x;
         this.y = y;
-        fourmis = new ArrayList<Fourmi>();
+        nbrFourmi = 0;
         qtePheromone = 0;
     }
 
@@ -37,14 +37,32 @@ public class Cellule {
     public int getQtePheromone(){
         return(qtePheromone);
     }
-
-    public ArrayList<Fourmi> getFourmis() {
-        return fourmis;
-    }  
+ 
 
     @Override
     public String toString() {
         return " ";
+    }
+    
+    public void addFourmi(){
+        nbrFourmi ++;
+    }
+    
+    public void removeFourmi(){
+        nbrFourmi --;
+    }
+
+    public int getNbrFourmi() {
+        return nbrFourmi;
+    }
+    
+      public void addQtePheromone(){
+        qtePheromone +=5;
+    }
+    
+    public void removeQtePheromone(){
+        if(qtePheromone > 0)
+            qtePheromone --;
     }
     
 }

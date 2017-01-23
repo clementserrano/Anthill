@@ -29,15 +29,21 @@ public class Fourmi {
 
     }
 
-    public void depotPheromone() {
-
+    public void depotPheromone(int x, int y) {
+        e.getGrille()[x][y].addQtePheromone();
     }
 
     public void deplacement() {
         if(etat == "recherche"){
             
-        }else if(etat == "retour"){
-            
+        }else if(etat == "retour" && chemin.size()>1){
+            chemin.remove(chemin.size());
+            int x = chemin.get(chemin.size()-1)[0];
+            int y = chemin.get(chemin.size()-1)[1];
+            e.getGrille()[this.x][this.y].removeFourmi();
+            this.x = x;
+            this.y = y;
+            e.getGrille()[this.x][this.y].addFourmi();;
         }
     }
 

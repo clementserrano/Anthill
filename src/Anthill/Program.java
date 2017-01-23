@@ -8,7 +8,7 @@ import Anthill.model.Environnement;
 public class Program {
 
     public static void main(String[] args) {
-        Environnement environnement = new Environnement("carte2.txt",1);
+        Environnement environnement = new Environnement("carte2.txt");
         environnement.run();
          
     }
