@@ -56,13 +56,37 @@ public class Fourmi {
     public void deciderDirection() {
         int c0 = 0, c1 = 5, c2 = 10, c3 = 20, c4 = 50, c5 = 20, c6 = 10, c7 = 5;
         int sommeC = c0 + c1 + c2 + c3 + c4 + c5 + c6 + c7;
-        int[] tableauDeCi;
+        int[] tableauDeCi = new int[sommeC];
         for (int i = 0; i < sommeC; i++) {
-
+            if(i < c1){
+                tableauDeCi[i] = c1;
+            }
+            else if(i < c2){
+                tableauDeCi[i] = c2;
+            }
+            else if(i < c3){
+                tableauDeCi[i] = c3;
+            }
+            else if(i < c4){
+                tableauDeCi[i] = c4;
+            }
+            else if(i < c5){
+                tableauDeCi[i] = c5;
+            }
+            else if(i < c6){
+                tableauDeCi[i] = c6;
+            }
+            else if(i < c7){
+                tableauDeCi[i] = c7;
+            }
         }
         if (chemin.size() == 0) {
 
         }
+        else{
+            
+        }
+        
     }
 
 }
