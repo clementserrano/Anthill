@@ -15,16 +15,16 @@ public class Fourmi {
     private String etat;
     private String direction;
     private ArrayList<int[]> chemin;
-    private Cellule[][] grille;
+    private Environnement e;
 
-    public Fourmi(int x, int y, Cellule[][] grille) {
+    public Fourmi(int x, int y, Environnement e) {
         this.x = x;
         this.y = y;
         this.qteNourriture = 0;
         this.etat = "recherche";
         this.direction = "N";
         this.chemin = new ArrayList<int[]>();
-        this.grille = grille;
+        this.e = e;
 
     }
 
@@ -42,6 +42,7 @@ public class Fourmi {
 
     public HashMap<String, Cellule> regarderAutour() {
         HashMap<String, Cellule> hmap = new HashMap<String, Cellule>();
+        Cellule[][] grille = e.getGrille();
         hmap.put("N", grille[x][y - 1]);
         hmap.put("NE", grille[x + 1][y - 1]);
         hmap.put("E", grille[x + 1][y]);
