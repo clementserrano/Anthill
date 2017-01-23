@@ -90,7 +90,7 @@ public class Environnement {
         // Création des fourmis
         fourmis = new ArrayList<>(nombreDeFourmis);
         for (int i = 0; i < nombreDeFourmis; i++) {
-            fourmis.add(new Fourmi(xFourmiliere, yFourmiliere, grille));
+            fourmis.add(new Fourmi(xFourmiliere, yFourmiliere, this));
         }
     }
     
