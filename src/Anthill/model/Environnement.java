@@ -13,21 +13,22 @@ public class Environnement {
     private int nombreDeLignes;
     private int nombreDeColonnes;
     private int nombreDeSources;
-    private int xFourmiliere;
-    private int yFourmiliere;
+    private int totalNourriture;
+    private final int nombreDeFourmis = 1;
+    private Fourmiliere fourmiliere;
     private ArrayList<Fourmi> fourmis;
 
     /**
-     * Fait déplacer les fourmis jusqu'à que toutes les sources soient détruites.
+     * Fait déplacer les fourmis jusqu'à que toute la nourriture se trouve dans la forumilière.
      */
     public void run() {
         System.out.println(this);
-        /*// Déplacement des fourmis
-        while(nombreDeSources > 0){
+        // Déplacement des fourmis
+        while(fourmiliere.getQteNourriture() != totalNourriture){
             fourmis.stream().forEach((f) -> {
                 f.deplacement();
             });
-        }*/
+        }
     }
 
     /**
@@ -43,9 +44,8 @@ public class Environnement {
     /**
      * Constructeur
      * @param filename Juste le nom.txt, les cartes doivent être ranger dans src/Anthill/cartes.
-     * @param nombreDeFourmis Nombre de fourmis à placer sur la carte.
      */
-    public Environnement(String filename, int nombreDeFourmis) {
+    public Environnement(String filename) {
         Readfile reader = new Readfile();
         String texte = reader.read("src\\Anthill\\cartes\\" + filename);
 
@@ -60,6 +60,7 @@ public class Environnement {
 
         int x = 0;
         int y = 0;
+        totalNourriture = 0;
 
         for (int i = 0; i < texte.length(); i++) {
             switch (texte.charAt(i)) {
@@ -74,12 +75,13 @@ public class Environnement {
                     grille[x][y] = new Obstacle(x, y);
                     break;
                 case 'o':
-                    grille[x][y] = new Source(x, y);
+                    Source s = new Source(x,y);
+                    totalNourriture += s.getQteNourriture();
+                    grille[x][y] = s;
                     break;
                 case 'x':
                     grille[x][y] = new Fourmiliere(x, y);
-                    xFourmiliere = x;
-                    yFourmiliere = y;
+                    fourmiliere = (Fourmiliere)grille[x][y];
                     break;
                 default:
                     break;
@@ -90,7 +92,7 @@ public class Environnement {
         // Création des fourmis
         fourmis = new ArrayList<>(nombreDeFourmis);
         for (int i = 0; i < nombreDeFourmis; i++) {
-            fourmis.add(new Fourmi(xFourmiliere, yFourmiliere, grille));
+            fourmis.add(new Fourmi(fourmiliere.getX(), fourmiliere.getY(), this));
         }
     }
     
@@ -176,6 +178,17 @@ public class Environnement {
             System.exit(3);
         }
     }
+    
+    /**
+     * Diminue les pheromones de toutes les cellules
+     */
+    public void diminuerPheromone(){
+        for (Cellule[] tc : grille) {
+            for (Cellule c : tc) {
+                c.removeQtePheromone();
+            }
+        } 
+    }
 
     /**
      * Renvoie la grille représentant la carte
@@ -186,19 +199,11 @@ public class Environnement {
     }
 
     /**
-     * Renvoie la ligne de la fourmilière
+     * Renvoie la fourmiliere
      * @return 
      */
-    public int getxFourmiliere() {
-        return xFourmiliere;
-    }
-
-    /**
-     * Renvoie la colonne de la fourmilière
-     * @return 
-     */
-    public int getyFourmiliere() {
-        return yFourmiliere;
+    public Fourmiliere getFourmiliere() {
+        return fourmiliere;
     }
 
     @Override

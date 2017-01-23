@@ -26,4 +26,8 @@ public class Source extends Cellule {
     public String toString() {
         return "o";
     }
+
+    void diminuerNourriture(Environnement e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
