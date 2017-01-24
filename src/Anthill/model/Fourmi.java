@@ -37,7 +37,7 @@ public class Fourmi {
 
     public void deplacement() {
         if (etat == "recherche") {
-            regarderAutour();
+            
             deplacerAller();
             int[] pos = {this.x, this.y};
             chemin.add(pos);
@@ -50,10 +50,12 @@ public class Fourmi {
             this.x = x;
             this.y = y;
             e.getGrille()[this.x][this.y].addFourmi();
+            depotPheromone(this.x, this.y);
             if (e.getGrille()[this.x][this.y] == e.getFourmiliere()) {
                 e.getFourmiliere().addQteNourriture(this.qteNourriture);
                 this.qteNourriture = 0;
                 // La fourmi est rentrée
+                etat = "recherche";
             }
         }
     }
@@ -61,29 +63,30 @@ public class Fourmi {
     public HashMap<String, Cellule> regarderAutour() {
         hmap = new HashMap<>();
         Cellule[][] grille = e.getGrille();
-        hmap.put("N", grille[x][y - 1]);
-        hmap.put("NE", grille[x + 1][y - 1]);
-        hmap.put("E", grille[x + 1][y]);
+        hmap.put("N", grille[x-1][y]);      // x = ligne (vers la droite), y = colonne(vers le bas)
+        hmap.put("NE", grille[x-1][y + 1]);
+        hmap.put("E", grille[x][y+1]);
         hmap.put("SE", grille[x + 1][y + 1]);
-        hmap.put("S", grille[x][y + 1]);
-        hmap.put("SO", grille[x - 1][y + 1]);
-        hmap.put("O", grille[x - 1][y]);
+        hmap.put("S", grille[x+1][y]);
+        hmap.put("SO", grille[x + 1][y - 1]);
+        hmap.put("O", grille[x][y-1]);
         hmap.put("NO", grille[x - 1][y - 1]);
         return hmap;
     }
 
     public void deplacerAller() {
 
+        regarderAutour();
         int p0, p1, p2, p3, p4, p5, p6, p7;             //qte phéromone
         int c0, c1, c2, c3, c4, c5, c6, c7;             //poids case
         c0 = c1 = c2 = c3 = c4 = c5 = c6 = c7 = 0;
-        p0 = e.getGrille()[x][y + 1].getQtePheromone();
-        p1 = e.getGrille()[x - 1][y + 1].getQtePheromone();
-        p2 = e.getGrille()[x - 1][y].getQtePheromone();
+        p0 = e.getGrille()[x+1][y].getQtePheromone();
+        p1 = e.getGrille()[x + 1][y - 1].getQtePheromone();
+        p2 = e.getGrille()[x][y-1].getQtePheromone();
         p3 = e.getGrille()[x - 1][y - 1].getQtePheromone();
-        p4 = e.getGrille()[x][y - 1].getQtePheromone();
-        p5 = e.getGrille()[x + 1][y - 1].getQtePheromone();
-        p6 = e.getGrille()[x + 1][y].getQtePheromone();
+        p4 = e.getGrille()[x-1][y].getQtePheromone();
+        p5 = e.getGrille()[x - 1][y + 1].getQtePheromone();
+        p6 = e.getGrille()[x][y+1].getQtePheromone();
         p7 = e.getGrille()[x + 1][y + 1].getQtePheromone();
 
         switch (this.direction) {
@@ -191,7 +194,7 @@ public class Fourmi {
             if (i < c0) {
                 tableauDeCi[i] = "S";
             }
-            if (i < c1 + c0) {
+            else if (i < c1 + c0) {
                 tableauDeCi[i] = "SO";
             } else if (i < c2 + c1 + c0) {
                 tableauDeCi[i] = "O";
@@ -207,17 +210,32 @@ public class Fourmi {
                 tableauDeCi[i] = "SE";
             }
         }
+        
+        
         Cellule cell;
         String nouvDir;
+        int essais = 0;
         do {
             int rdm = (int) (Math.random() * (sommeC));
+            /*for(int i = 0; i<tableauDeCi.length; i++){
+                System.out.print(tableauDeCi[i] + " ");
+            }*/
+            essais ++;
             nouvDir = tableauDeCi[rdm];
             cell = hmap.get(nouvDir);
-        } while (cell instanceof Obstacle);
-
-        e.getGrille()[this.x][this.y].removeFourmi();
+            
+            //System.out.println("\n" +rdm+" "+nouvDir);
+        } while (cell instanceof Obstacle && essais < 500);
+        if(essais >= 500){
+            this.direction = this.demiTour();
+            cell = hmap.get(this.direction);
+        }
+        else{
+            this.direction = nouvDir;
+        }
         
-        this.direction = nouvDir;
+        e.getGrille()[this.x][this.y].removeFourmi();
+
         this.x = cell.getX();
         this.y = cell.getY();
         
@@ -230,7 +248,19 @@ public class Fourmi {
             this.qteNourriture += 1;
             this.etat = "retour";
         }
+        
+        
     }
+    
+    
     // RESTE A FAIRE LE CHEMIN, LE TEST D'ARRET DU RDM BITE DE TAUREAU
+
+    private String demiTour() {
+        switch(this.direction){
+            case "N": return "S"; case "NE": return "SO"; case "E": return "O"; case "SE": return "NO";
+            case "S": return "N"; case "SO": return "NE"; case "O": return "E"; case "NO": return "SE";
+        }
+        return null;
+    }
 
 }

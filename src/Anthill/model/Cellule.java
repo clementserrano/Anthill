@@ -59,7 +59,7 @@ public class Cellule {
     }
 
     public void addQtePheromone() {
-        qtePheromone += 10;
+        qtePheromone += 2;
     }
 
     public void removeQtePheromone() {

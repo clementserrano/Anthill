@@ -18,7 +18,7 @@ public class Environnement {
     private int nombreDeColonnes;
     private int nombreDeSources;
     private int totalNourriture;
-    private final int nombreDeFourmis = 2;
+    private final int nombreDeFourmis = 4;
     private Fourmiliere fourmiliere;
     private ArrayList<Fourmi> fourmis;
     private GUI observateur;
@@ -35,7 +35,9 @@ public class Environnement {
                 f.deplacement();
             });
             notifierObservateur();
-            try{sleep(500);}catch(Exception e){}
+            System.out.println(fourmiliere.getQteNourriture());
+            System.out.println(totalNourriture);
+            try{sleep(50);}catch(Exception e){}
         }
     }
 
