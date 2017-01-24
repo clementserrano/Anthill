@@ -54,6 +54,7 @@ public class Fourmi {
                 e.getFourmiliere().addQteNourriture(this.qteNourriture);
                 this.qteNourriture = 0;
                 // La fourmi est rentrée
+                etat = "recherche";
             }
         }
     }
