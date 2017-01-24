@@ -15,9 +15,9 @@ public class Fourmiliere extends Cellule {
     public int getQteNourriture() {
         return qteNourriture;
     }
-
-    public void setQteNourriture(int qteNourriture) {
-        this.qteNourriture = qteNourriture;
+    
+    public void addQteNourriture(int qteNourriture) {
+        this.qteNourriture += qteNourriture;
     }
     
     @Override

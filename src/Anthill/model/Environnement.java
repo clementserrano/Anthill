@@ -1,10 +1,14 @@
 package Anthill.model;
 
 import Anthill.util.Readfile;
+import Anthill.view.GUI;
 import java.util.ArrayList;
+import static java.lang.Thread.sleep;
 
 /**
- * Environnement représentant une carte où vont s'effectuer des déplacements de fourmis.
+ * Environnement représentant une carte où vont s'effectuer des déplacements de
+ * fourmis.
+ *
  * @author clementserrano
  */
 public class Environnement {
@@ -14,25 +18,30 @@ public class Environnement {
     private int nombreDeColonnes;
     private int nombreDeSources;
     private int totalNourriture;
-    private final int nombreDeFourmis = 1;
+    private final int nombreDeFourmis = 2;
     private Fourmiliere fourmiliere;
     private ArrayList<Fourmi> fourmis;
+    private GUI observateur;
 
     /**
-     * Fait déplacer les fourmis jusqu'à que toute la nourriture se trouve dans la forumilière.
+     * Fait déplacer les fourmis jusqu'à que toute la nourriture se trouve dans
+     * la forumilière.
      */
     public void run() {
         System.out.println(this);
         // Déplacement des fourmis
-        while(fourmiliere.getQteNourriture() != totalNourriture){
+        while (fourmiliere.getQteNourriture() != totalNourriture) {
             fourmis.stream().forEach((f) -> {
                 f.deplacement();
             });
+            notifierObservateur();
+            try{sleep(500);}catch(Exception e){}
         }
     }
 
     /**
      * Détruit une source à la position indiquée.
+     *
      * @param x ligne de la source à détruire.
      * @param y colonne de la source à détruire.
      */
@@ -43,7 +52,9 @@ public class Environnement {
 
     /**
      * Constructeur
-     * @param filename Juste le nom.txt, les cartes doivent être ranger dans src/Anthill/cartes.
+     *
+     * @param filename Juste le nom.txt, les cartes doivent être ranger dans
+     * src/Anthill/cartes.
      */
     public Environnement(String filename) {
         Readfile reader = new Readfile();
@@ -75,29 +86,31 @@ public class Environnement {
                     grille[x][y] = new Obstacle(x, y);
                     break;
                 case 'o':
-                    Source s = new Source(x,y);
+                    Source s = new Source(x, y);
                     totalNourriture += s.getQteNourriture();
                     grille[x][y] = s;
                     break;
                 case 'x':
                     grille[x][y] = new Fourmiliere(x, y);
-                    fourmiliere = (Fourmiliere)grille[x][y];
+                    fourmiliere = (Fourmiliere) grille[x][y];
                     break;
                 default:
                     break;
             }
             y += 1;
         }
-        
+
         // Création des fourmis
         fourmis = new ArrayList<>(nombreDeFourmis);
         for (int i = 0; i < nombreDeFourmis; i++) {
             fourmis.add(new Fourmi(fourmiliere.getX(), fourmiliere.getY(), this));
         }
     }
-    
+
     /**
-     * Vérifie si la carte fournie est bien un carré (même nombre de colonnes pour chaque lignes).
+     * Vérifie si la carte fournie est bien un carré (même nombre de colonnes
+     * pour chaque lignes).
+     *
      * @param texte String à vérifier
      */
     private void verifierDimensions(String texte) {
@@ -124,6 +137,7 @@ public class Environnement {
 
     /**
      * Vérifie si la carte fournie est bien bornée d'obstacles.
+     *
      * @param texte String à vérifier
      */
     private void verifierObstacles(String texte) {
@@ -147,6 +161,7 @@ public class Environnement {
 
     /**
      * Vérifie si la carte fournie contient bien une seule fourmilière.
+     *
      * @param texte String à vérifier
      */
     private void verifierFourmiliere(String texte) {
@@ -164,6 +179,7 @@ public class Environnement {
 
     /**
      * Vérifie si la carte fournie contient au moins une source.
+     *
      * @param texte String à vérifier
      */
     private void verifierSource(String texte) {
@@ -178,21 +194,26 @@ public class Environnement {
             System.exit(3);
         }
     }
-    
+
     /**
      * Diminue les pheromones de toutes les cellules
      */
-    public void diminuerPheromone(){
+    public void diminuerPheromone() {
         for (Cellule[] tc : grille) {
             for (Cellule c : tc) {
                 c.removeQtePheromone();
             }
-        } 
+        }
+    }
+
+    public void notifierObservateur() {
+        observateur.update();
     }
 
     /**
      * Renvoie la grille représentant la carte
-     * @return 
+     *
+     * @return
      */
     public Cellule[][] getGrille() {
         return grille;
@@ -200,10 +221,15 @@ public class Environnement {
 
     /**
      * Renvoie la fourmiliere
-     * @return 
+     *
+     * @return
      */
     public Fourmiliere getFourmiliere() {
         return fourmiliere;
+    }
+
+    public void setObservateur(GUI observateur) {
+        this.observateur = observateur;
     }
 
     @Override

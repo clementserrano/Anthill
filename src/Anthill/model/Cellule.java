@@ -1,18 +1,18 @@
 package Anthill.model;
 
-import java.util.ArrayList;
-
 /**
  * Cellule constituant la grille de l'environnement.
+ *
  * @author clementserrano
  */
 public class Cellule {
-    private int x;
-    private int y;
-    private int nbrFourmi;
-    private int qtePheromone;
-    
-    public Cellule(int x, int y){
+
+    protected int x;
+    protected int y;
+    protected int nbrFourmi;
+    protected int qtePheromone;
+
+    public Cellule(int x, int y) {
         this.x = x;
         this.y = y;
         nbrFourmi = 0;
@@ -34,35 +34,38 @@ public class Cellule {
     public void setY(int y) {
         this.y = y;
     }
-    public int getQtePheromone(){
-        return(qtePheromone);
+
+    public int getQtePheromone() {
+        return (qtePheromone);
     }
- 
 
     @Override
     public String toString() {
         return " ";
     }
-    
-    public void addFourmi(){
-        nbrFourmi ++;
+
+    public void addFourmi() {
+        nbrFourmi++;
     }
-    
-    public void removeFourmi(){
-        nbrFourmi --;
+
+    public void removeFourmi() {
+        if (nbrFourmi > 0) {
+            nbrFourmi--;
+        }
     }
 
     public int getNbrFourmi() {
         return nbrFourmi;
     }
-    
-      public void addQtePheromone(){
-        qtePheromone +=10;
+
+    public void addQtePheromone() {
+        qtePheromone += 10;
     }
-    
-    public void removeQtePheromone(){
-        if(qtePheromone > 0)
-            qtePheromone --;
+
+    public void removeQtePheromone() {
+        if (qtePheromone > 0) {
+            qtePheromone--;
+        }
     }
-    
+
 }
