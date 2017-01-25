@@ -252,8 +252,9 @@ public class Fourmi {
         
     }
     
-    
-    // RESTE A FAIRE LE CHEMIN, LE TEST D'ARRET DU RDM BITE DE TAUREAU
+    private void deplacerDijkstra(){
+        
+    }
 
     private String demiTour() {
         switch(this.direction){
