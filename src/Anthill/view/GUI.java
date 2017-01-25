@@ -25,7 +25,7 @@ public class GUI extends JFrame {
         this.labelGrille = new JLabel[e.getGrille().length][e.getGrille()[0].length];
 
         setTitle("Anthill");
-        setSize(400, 300);
+        setSize(1360, 720);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

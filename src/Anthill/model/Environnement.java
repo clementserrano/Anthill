@@ -34,9 +34,8 @@ public class Environnement {
             fourmis.stream().forEach((f) -> {
                 f.deplacement();
             });
+            diminuerPheromone();
             notifierObservateur();
-            System.out.println(fourmiliere.getQteNourriture());
-            System.out.println(totalNourriture);
             try{sleep(50);}catch(Exception e){}
         }
     }
