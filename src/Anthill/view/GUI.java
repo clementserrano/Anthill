@@ -1,14 +1,8 @@
 package Anthill.view;
 
 import Anthill.model.Environnement;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridLayout;
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 /**
  * Interface graphique représentant en temps réel la simulation
@@ -19,6 +13,9 @@ public class GUI extends JFrame {
 
     private Environnement e;
     private JLabel[][] labelGrille;
+    private int nbFourmis;
+    private int timeSleep;
+    private String carte;
 
     public GUI(Environnement e) {
         this.e = e;
@@ -28,28 +25,8 @@ public class GUI extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH); // fullscreen
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(labelGrille.length, labelGrille[0].length));
-        for (int i = 0; i < labelGrille.length; i++) {
-            for (int j = 0; j < labelGrille[0].length; j++) {
-                JLabel label = new JLabel(e.getGrille()[i][j].toString());
-                
-                label.setFont(new Font("Calibri", Font.PLAIN, 30));
-                label.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-                label.setHorizontalAlignment(SwingConstants.CENTER);
-                
-                label.setBackground(Color.red);
-                if(e.getGrille()[i][j].getNbrFourmi()!=0){
-                    label.setOpaque(true);
-                }
-                
-                labelGrille[i][j] = label;
-                panel.add(label);
-            }
-        }
-
-        setContentPane(panel);
+        //setForm();
+        setGrille();
     }
 
     public void update() {
@@ -65,4 +42,40 @@ public class GUI extends JFrame {
         }
         repaint();
     }
+    
+    public void setGrille(){
+        PanelGrille panel = new PanelGrille(labelGrille,e);
+        setContentPane(panel);
+    }
+    
+    public void setForm(){
+        PanelForm panel = new PanelForm(this);
+        setContentPane(panel);
+    }
+
+    public int getNbFourmis() {
+        return nbFourmis;
+    }
+
+    public void setNbFourmis(int nbFourmis) {
+        this.nbFourmis = nbFourmis;
+    }
+
+    public int getTimeSleep() {
+        return timeSleep;
+    }
+
+    public void setTimeSleep(int timeSleep) {
+        this.timeSleep = timeSleep;
+    }
+
+    public String getCarte() {
+        return carte;
+    }
+
+    public void setCarte(String carte) {
+        this.carte = carte;
+    }
+    
+    
 }

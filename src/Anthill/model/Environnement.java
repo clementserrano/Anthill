@@ -29,7 +29,6 @@ public class Environnement {
      * la forumilière.
      */
     public void run() {
-        System.out.println(this);
         // Déplacement des fourmis
         while (fourmiliere.getQteNourriture() != totalNourriture) {
             fourmis.stream().forEach((f) -> {
