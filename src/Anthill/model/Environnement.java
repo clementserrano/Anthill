@@ -20,6 +20,7 @@ public class Environnement {
     private int totalNourriture;
     private final int nombreDeFourmis = 4;
     private Fourmiliere fourmiliere;
+    private ArrayList<Source> sources;
     private ArrayList<Fourmi> fourmis;
     private GUI observateur;
 
@@ -73,6 +74,7 @@ public class Environnement {
         int x = 0;
         int y = 0;
         totalNourriture = 0;
+        sources = new ArrayList<>();
 
         for (int i = 0; i < texte.length(); i++) {
             switch (texte.charAt(i)) {
@@ -88,6 +90,7 @@ public class Environnement {
                     break;
                 case 'o':
                     Source s = new Source(x, y);
+                    sources.add(s);
                     totalNourriture += s.getQteNourriture();
                     grille[x][y] = s;
                     break;
@@ -100,6 +103,8 @@ public class Environnement {
             }
             y += 1;
         }
+        
+        verifierPossibilite();
 
         // Création des fourmis
         fourmis = new ArrayList<>(nombreDeFourmis);
@@ -126,7 +131,7 @@ public class Environnement {
                     nombreDeColonnes = countColonnes;
                 }
                 if (countColonnes != nombreDeColonnes) {
-                    System.out.println("La carte n'est pas carrée.");
+                    System.out.println("La carte n'est pas rectangulaire.");
                     System.exit(-1);
                 }
                 countColonnes = 0;
@@ -195,6 +200,13 @@ public class Environnement {
             System.exit(3);
         }
     }
+    
+    private void verifierPossibilite(){
+        for(Source s : sources){
+            Fourmi f = new Fourmi(fourmiliere.getX(),fourmiliere.getY(),this);
+            
+        }
+    }
 
     /**
      * Diminue les pheromones de toutes les cellules
@@ -229,6 +241,11 @@ public class Environnement {
         return fourmiliere;
     }
 
+    private ArrayList<Source> getSources() {
+        return sources;
+    }
+    
+    
     public void setObservateur(GUI observateur) {
         this.observateur = observateur;
     }
