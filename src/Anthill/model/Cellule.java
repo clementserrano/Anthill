@@ -9,13 +9,13 @@ public class Cellule {
 
     protected int x;
     protected int y;
-    protected int nbrFourmi;
+    protected int nbFourmis;
     protected int qtePheromone;
 
     public Cellule(int x, int y) {
         this.x = x;
         this.y = y;
-        nbrFourmi = 0;
+        nbFourmis = 0;
         qtePheromone = 0;
     }
 
@@ -45,21 +45,21 @@ public class Cellule {
     }
 
     public void addFourmi() {
-        nbrFourmi++;
+        nbFourmis++;
     }
 
     public void removeFourmi() {
-        if (nbrFourmi > 0) {
-            nbrFourmi--;
+        if (nbFourmis > 0) {
+            nbFourmis--;
         }
     }
 
-    public int getNbrFourmi() {
-        return nbrFourmi;
+    public int getNbFourmis() {
+        return nbFourmis;
     }
 
     public void addQtePheromone() {
-        qtePheromone += 2;
+        qtePheromone += 10;
     }
 
     public void removeQtePheromone() {

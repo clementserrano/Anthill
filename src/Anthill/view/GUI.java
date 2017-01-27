@@ -1,8 +1,11 @@
 package Anthill.view;
 
 import Anthill.model.Environnement;
+import Anthill.util.Images;
+import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * Interface graphique représentant en temps réel la simulation
@@ -11,71 +14,42 @@ import javax.swing.JLabel;
  */
 public class GUI extends JFrame {
 
-    private Environnement e;
-    private JLabel[][] labelGrille;
-    private int nbFourmis;
-    private int timeSleep;
-    private String carte;
-
-    public GUI(Environnement e) {
-        this.e = e;
-        this.labelGrille = new JLabel[e.getGrille().length][e.getGrille()[0].length];
-
+    private JPanel panels;
+    private Form form;
+    private Grille grille;
+    
+    public GUI() {
+        panels = new JPanel(new CardLayout());
+        /*form = new Form(this);
+        panels.add(form);*/
+        JPanel p = new JPanel();
+        p.add(new JLabel("edzd"));
+        panels.add(p);
+        add(panels);
+        pack();
         setTitle("Anthill");
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // fullscreen
-        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setForm();
-        setGrille();
+        setLocationRelativeTo(null);
+        setVisible(true);
+        showGrille("carte2.txt", 5, 100);
+    }
+
+    public void showGrille(String carte, int nbFourmis, int timeSleep) {
+        Environnement environnement = new Environnement(carte, nbFourmis, timeSleep);
+        JLabel[][] labelGrille = new JLabel[environnement.getGrille().length][environnement.getGrille()[0].length];
+        grille = new Grille(environnement, labelGrille);
+        panels.add(grille);
+
+        CardLayout cl = (CardLayout) (panels.getLayout());
+        cl.next(panels);
+        pack();
+        setLocationRelativeTo(null);
+
+        environnement.setObservateur(this);
+        environnement.run();
     }
 
     public void update() {
-        for (int i = 0; i < labelGrille.length; i++) {
-            for (int j = 0; j < labelGrille[0].length; j++) {
-                labelGrille[i][j].setText(e.getGrille()[i][j].toString());
-                if(e.getGrille()[i][j].getNbrFourmi()!=0){
-                    labelGrille[i][j].setOpaque(true);
-                }else{
-                    labelGrille[i][j].setOpaque(false);
-                }
-            }
-        }
-        repaint();
+        grille.update();
     }
-    
-    public void setGrille(){
-        PanelGrille panel = new PanelGrille(labelGrille,e);
-        setContentPane(panel);
-    }
-    
-    public void setForm(){
-        PanelForm panel = new PanelForm(this);
-        setContentPane(panel);
-    }
-
-    public int getNbFourmis() {
-        return nbFourmis;
-    }
-
-    public void setNbFourmis(int nbFourmis) {
-        this.nbFourmis = nbFourmis;
-    }
-
-    public int getTimeSleep() {
-        return timeSleep;
-    }
-
-    public void setTimeSleep(int timeSleep) {
-        this.timeSleep = timeSleep;
-    }
-
-    public String getCarte() {
-        return carte;
-    }
-
-    public void setCarte(String carte) {
-        this.carte = carte;
-    }
-    
-    
 }
