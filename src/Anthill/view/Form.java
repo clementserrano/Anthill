@@ -19,6 +19,7 @@ public class Form extends javax.swing.JPanel {
     
     /**
      * Creates new form Form
+     * @param gui
      */
     public Form(GUI gui) {
         initComponents();
@@ -50,7 +51,10 @@ public class Form extends javax.swing.JPanel {
         String carte = (String)comboBoxCartes.getSelectedItem();
         int nbFourmis = Integer.parseInt(textNbFourmis.getText());
         int timeSleep = Integer.parseInt(textTimeSleep.getText());
-        gui.showGrille(carte, nbFourmis, timeSleep);
+        gui.setCarte(carte);
+        gui.setNbFourmis(nbFourmis);
+        gui.setTimeSleep(timeSleep);
+        gui.setReady(true);
     }
 
     /**

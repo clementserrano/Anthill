@@ -9,5 +9,7 @@ public class Program {
 
     public static void main(String[] args) {
         GUI fenetre = new GUI();
+        while(!fenetre.isReady());
+        fenetre.showGrille();
     }
 }
