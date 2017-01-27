@@ -4,7 +4,7 @@ import Anthill.util.Readfile;
 import Anthill.view.GUI;
 import java.util.ArrayList;
 import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
+import javax.swing.JOptionPane;
 
 /**
  * Environnement représentant une carte où vont s'effectuer des déplacements de
@@ -137,7 +137,7 @@ public class Environnement {
                     nombreDeColonnes = countColonnes;
                 }
                 if (countColonnes != nombreDeColonnes) {
-                    System.out.println("La carte n'est pas rectangulaire.");
+                    JOptionPane.showMessageDialog(null, "La carte n'est pas rectangulaire");
                     System.exit(-1);
                 }
                 countColonnes = 0;
@@ -164,7 +164,7 @@ public class Environnement {
             }
             if (i < texte.length() && (x == 0 || y == 0 || x == nombreDeLignes - 1 || y == nombreDeColonnes - 1)
                     && texte.charAt(i) != '#') {
-                System.out.println("La carte n'est pas bien bornée.");
+                JOptionPane.showMessageDialog(null, "La carte n'est pas bien bornée");
                 System.exit(1);
             }
             y += 1;
@@ -183,7 +183,7 @@ public class Environnement {
                 count += 1;
             }
             if (count == 2) {
-                System.out.println("La carte possède plus d'une fourmilière.");
+                JOptionPane.showMessageDialog(null, "La carte possède plus d'une fourmilière");
                 System.exit(2);
             }
         }
@@ -202,7 +202,7 @@ public class Environnement {
             }
         }
         if (nombreDeSources == 0) {
-            System.out.println("La carte ne possède aucune source.");
+            JOptionPane.showMessageDialog(null, "La carte ne possède aucune source");
             System.exit(3);
         }
     }

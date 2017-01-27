@@ -5,7 +5,7 @@ package Anthill.model;
  *
  * @author clementserrano
  */
-public class Cellule {
+public abstract class Cellule {
 
     protected int x;
     protected int y;

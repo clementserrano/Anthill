@@ -8,6 +8,7 @@ package Anthill.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +25,10 @@ public class Form extends javax.swing.JPanel {
     public Form(GUI gui) {
         initComponents();
         this.gui = gui;
+        
+        textNbFourmis.setText("1");
+        textTimeSleep.setText("500");
+        
         File folder = new File("src/Anthill/ressources/cartes");
         File[] listOfFiles = folder.listFiles();
         
@@ -38,16 +43,22 @@ public class Form extends javax.swing.JPanel {
             }
         }
         
-        buttonLancer.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                lancerSimulation();
-            }
-            
+        buttonLancer.addActionListener((ActionEvent ae) -> {
+            lancerSimulation();
         });
     }
     
     private void lancerSimulation(){
+        if(textNbFourmis.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Aucun nombre de fourmis entré");
+            return;
+        }
+        
+        if(textTimeSleep.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Aucun temps entre chaque tour entré");
+            return;
+        }
+        
         String carte = (String)comboBoxCartes.getSelectedItem();
         int nbFourmis = Integer.parseInt(textNbFourmis.getText());
         int timeSleep = Integer.parseInt(textTimeSleep.getText());
