@@ -30,11 +30,7 @@ public class Fourmi {
         this.e = e;
 
     }
-
-    public void depotPheromone(int x, int y) {
-        e.getGrille()[x][y].addQtePheromone();
-    }
-
+    
     public void deplacement() {
         if (etat == "recherche") {
             
@@ -252,8 +248,13 @@ public class Fourmi {
         
     }
     
-    private void deplacerDijkstra(){
+    public void deplacerDijkstra(int x, int y){
+        // Algorithme A*
         
+    }
+    
+    public void depotPheromone(int x, int y) {
+        e.getGrille()[x][y].addQtePheromone();
     }
 
     private String demiTour() {
@@ -264,4 +265,11 @@ public class Fourmi {
         return null;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }

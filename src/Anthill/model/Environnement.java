@@ -19,7 +19,6 @@ public class Environnement {
     private int nombreDeColonnes;
     private int nombreDeSources;
     private int totalNourriture;
-    private int nbFourmis;
     private int timeSleep;
     private Fourmiliere fourmiliere;
     private ArrayList<Source> sources;
@@ -35,7 +34,6 @@ public class Environnement {
      * @param timeSleep
      */
     public Environnement(String filename, int nbFourmis, int timeSleep) {
-        this.nbFourmis = nbFourmis;
         this.timeSleep = timeSleep;
         
         Readfile reader = new Readfile();
@@ -83,7 +81,7 @@ public class Environnement {
             y += 1;
         }
         
-        //verifierPossibilite();
+        verifierPossibilite();
 
         // Création des fourmis
         fourmis = new ArrayList<>(nbFourmis);
@@ -107,17 +105,6 @@ public class Environnement {
             try{sleep(timeSleep);}catch(Exception e){}
         }
     }
-
-    /**
-     * Détruit une source à la position indiquée.
-     *
-     * @param x ligne de la source à détruire.
-     * @param y colonne de la source à détruire.
-     */
-    public void detruireSource(int x, int y) {
-        grille[x][y] = new Cellule_Vide(x, y);
-        nombreDeSources -= 1;
-    }    
     
     /**
      * Vérifie si la carte fournie est bien un carré (même nombre de colonnes
@@ -208,10 +195,22 @@ public class Environnement {
     }
     
     private void verifierPossibilite(){
-        sources.stream().forEach((_item) -> {
+        sources.stream().forEach((s) -> {
             Fourmi f = new Fourmi(fourmiliere.getX(),fourmiliere.getY(),this);
+            
         });
     }
+    
+    /**
+     * Détruit une source à la position indiquée.
+     *
+     * @param x ligne de la source à détruire.
+     * @param y colonne de la source à détruire.
+     */
+    public void detruireSource(int x, int y) {
+        grille[x][y] = new Cellule_Vide(x, y);
+        nombreDeSources -= 1;
+    } 
 
     /**
      * Diminue les pheromones de toutes les cellules
@@ -244,12 +243,7 @@ public class Environnement {
      */
     public Fourmiliere getFourmiliere() {
         return fourmiliere;
-    }
-
-    private ArrayList<Source> getSources() {
-        return sources;
-    }
-    
+    }    
     
     public void setObservateur(GUI observateur) {
         this.observateur = observateur;
