@@ -2,6 +2,7 @@ package Anthill.view;
 
 import Anthill.model.Environnement;
 import Anthill.util.Images;
+import Anthill.util.Taille;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,6 +40,7 @@ public class GUI extends JFrame {
 
     public void showGrille() {
         Environnement environnement = new Environnement(carte, nbFourmis, timeSleep, qteNourriture);
+        Taille.setEnvironnement(environnement);
         JLabel[][] labelGrille = new JLabel[environnement.getGrille().length][environnement.getGrille()[0].length];
         grille = new Grille(environnement, labelGrille);
         panels.add(grille);

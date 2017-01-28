@@ -124,7 +124,7 @@ public class Images {
         BufferedImage img = null;
         try {
             img = ImageIO.read(new File(imgPath + name + ".png"));
-            Image dimg = img.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+            Image dimg = img.getScaledInstance(Taille.hauteur, Taille.largeur, Image.SCALE_SMOOTH);
             return new ImageIcon(dimg);
         } catch (IOException e) {
             e.printStackTrace();

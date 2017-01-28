@@ -27,6 +27,7 @@ public class Form extends javax.swing.JPanel {
         
         textNbFourmis.setText("1");
         textTimeSleep.setText("500");
+        textQteNourriture.setText("1");
         
         File folder = new File("src/Anthill/ressources/cartes");
         File[] listOfFiles = folder.listFiles();
@@ -48,20 +49,33 @@ public class Form extends javax.swing.JPanel {
     }
     
     private void lancerSimulation(){
-        if(textNbFourmis.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Aucun nombre de fourmis entré");
-            return;
-        }
-        
-        if(textTimeSleep.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Aucun temps entre chaque tour entré");
-            return;
-        }
         
         String carte = (String)comboBoxCartes.getSelectedItem();
-        int nbFourmis = Integer.parseInt(textNbFourmis.getText());
-        int timeSleep = Integer.parseInt(textTimeSleep.getText());
-        int qteNourriture = Integer.parseInt(textQteNourriture.getText());
+        
+        int nbFourmis;
+        try {
+            nbFourmis = Integer.parseInt(textNbFourmis.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Mauvais nombre de fourmis entré");
+            return;
+        }
+        
+        int timeSleep;
+        try {
+            timeSleep = Integer.parseInt(textTimeSleep.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Mauvais temps entre chaque tour entré");
+            return;
+        }
+        
+        int qteNourriture;
+        try {
+            qteNourriture = Integer.parseInt(textQteNourriture.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Mauvaise quantité de nourriture entrée");
+            return;
+        }
+        
         gui.setCarte(carte);
         gui.setNbFourmis(nbFourmis);
         gui.setTimeSleep(timeSleep);
