@@ -9,7 +9,7 @@ import Anthill.view.GUI;
 public class Program {
 
     public static void main(String[] args) {
-        Environnement environnement = new Environnement("carte1.txt");
+        Environnement environnement = new Environnement("carte2.txt");
         
         GUI fenetre = new GUI(environnement);
         fenetre.setVisible(true);
