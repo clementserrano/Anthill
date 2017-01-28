@@ -33,7 +33,7 @@ public class Environnement {
      * @param nbFourmis
      * @param timeSleep
      */
-    public Environnement(String filename, int nbFourmis, int timeSleep) {
+    public Environnement(String filename, int nbFourmis, int timeSleep, int qteNourriture) {
         this.timeSleep = timeSleep;
         
         Readfile reader = new Readfile();
@@ -67,6 +67,7 @@ public class Environnement {
                     break;
                 case 'o':
                     Source s = new Source(x, y);
+                    s.setQteNourriture(qteNourriture);
                     sources.add(s);
                     totalNourriture += s.getQteNourriture();
                     grille[x][y] = s;

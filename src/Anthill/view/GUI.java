@@ -21,6 +21,7 @@ public class GUI extends JFrame {
     private String carte;
     private int nbFourmis;
     private int timeSleep;
+    private int qteNourriture;
     private volatile boolean ready = false;
     
     public GUI() {
@@ -37,7 +38,7 @@ public class GUI extends JFrame {
     }
 
     public void showGrille() {
-        Environnement environnement = new Environnement(carte, nbFourmis, timeSleep);
+        Environnement environnement = new Environnement(carte, nbFourmis, timeSleep, qteNourriture);
         JLabel[][] labelGrille = new JLabel[environnement.getGrille().length][environnement.getGrille()[0].length];
         grille = new Grille(environnement, labelGrille);
         panels.add(grille);
@@ -65,6 +66,10 @@ public class GUI extends JFrame {
 
     public void setTimeSleep(int timeSleep) {
         this.timeSleep = timeSleep;
+    }
+    
+    public void setQteNourriture(int qteNourriture){
+        this.qteNourriture = qteNourriture;
     }
 
     public void setReady(boolean ready) {
