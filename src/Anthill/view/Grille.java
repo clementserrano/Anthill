@@ -7,6 +7,7 @@ package Anthill.view;
 
 import Anthill.model.Environnement;
 import Anthill.util.Images;
+import Anthill.util.Taille;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -62,8 +63,7 @@ public class Grille extends JPanel {
                 if (environnement.getGrille()[i][j].toString() != "#") {
                     setBackGroundPheromone(label, environnement.getGrille()[i][j].getQtePheromone());
                 }
-                label.setFont(new Font("Calibri", Font.PLAIN, 30));
-                label.setPreferredSize(new Dimension(30, 40));
+                label.setPreferredSize(new Dimension(Taille.hauteur+1, Taille.largeur+1));
                 label.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
                 label.setHorizontalAlignment(SwingConstants.CENTER);
             }
