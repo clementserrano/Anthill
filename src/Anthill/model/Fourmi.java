@@ -30,11 +30,7 @@ public class Fourmi {
         this.e = e;
 
     }
-
-    public void depotPheromone(int x, int y) {
-        e.getGrille()[x][y].addQtePheromone();
-    }
-
+    
     public void deplacement() {
         if (etat == "recherche") {
             
@@ -252,8 +248,14 @@ public class Fourmi {
         
     }
     
+    public void deplacerDijkstra(int x, int y){
+        // Algorithme A*
+        
+    }
     
-    // RESTE A FAIRE LE CHEMIN, LE TEST D'ARRET DU RDM BITE DE TAUREAU
+    public void depotPheromone(int x, int y) {
+        e.getGrille()[x][y].addQtePheromone();
+    }
 
     private String demiTour() {
         switch(this.direction){
@@ -263,4 +265,11 @@ public class Fourmi {
         return null;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
