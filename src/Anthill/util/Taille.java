@@ -9,12 +9,20 @@ package Anthill.util;
 import Anthill.model.Environnement;
 
 /**
- *
+ * Permet de redimensionner la taille des cellules en fonction de leur nombre
  * @author clementserrano
  */
 public class Taille {
     private static Environnement e;
+
+    /**
+     * Hauteur de la cellule
+     */
     public static int hauteur;
+
+    /**
+     * Largeur de la cellule
+     */
     public static int largeur;
     
     private static int hauteur(){
@@ -37,6 +45,10 @@ public class Taille {
         return largeur;
     }
     
+    /**
+     * Donne les informations concernant le nombre de cellules de la simulation
+     * @param environnement
+     */
     public static void setEnvironnement(Environnement environnement){
         e=environnement;
         hauteur = hauteur();

@@ -32,10 +32,11 @@ public class Environnement {
      * src/Anthill/cartes.
      * @param nbFourmis
      * @param timeSleep
+     * @param qteNourriture
      */
     public Environnement(String filename, int nbFourmis, int timeSleep, int qteNourriture) {
         this.timeSleep = timeSleep;
-        
+
         Readfile reader = new Readfile();
         String texte = reader.read("src/Anthill/ressources/cartes/" + filename);
 
@@ -81,8 +82,6 @@ public class Environnement {
             }
             y += 1;
         }
-        
-        verifierPossibilite();
 
         // Création des fourmis
         fourmis = new ArrayList<>(nbFourmis);
@@ -93,7 +92,7 @@ public class Environnement {
 
     /**
      * Fait déplacer les fourmis jusqu'à que toute la nourriture se trouve dans
-     * la forumilière.
+     * la fourmilière.
      */
     public void run() {
         // Déplacement des fourmis
@@ -103,10 +102,13 @@ public class Environnement {
             });
             diminuerPheromone();
             notifierObservateur();
-            try{sleep(timeSleep);}catch(Exception e){}
+            try {
+                sleep(timeSleep);
+            } catch (Exception e) {
+            }
         }
     }
-    
+
     /**
      * Vérifie si la carte fournie est bien un carré (même nombre de colonnes
      * pour chaque lignes).
@@ -194,14 +196,7 @@ public class Environnement {
             System.exit(3);
         }
     }
-    
-    private void verifierPossibilite(){
-        sources.stream().forEach((s) -> {
-            Fourmi f = new Fourmi(fourmiliere.getX(),fourmiliere.getY(),this);
-            
-        });
-    }
-    
+
     /**
      * Détruit une source à la position indiquée.
      *
@@ -211,7 +206,7 @@ public class Environnement {
     public void detruireSource(int x, int y) {
         grille[x][y] = new Cellule_Vide(x, y);
         nombreDeSources -= 1;
-    } 
+    }
 
     /**
      * Diminue les pheromones de toutes les cellules
@@ -224,6 +219,9 @@ public class Environnement {
         }
     }
 
+    /**
+     * Préviens l'interface de la modification de la matrice
+     */
     public void notifierObservateur() {
         observateur.update();
     }
@@ -244,12 +242,22 @@ public class Environnement {
      */
     public Fourmiliere getFourmiliere() {
         return fourmiliere;
-    }    
-    
+    }
+
+    /**
+     * Définit l'observateur de la matrice
+     *
+     * @param observateur
+     */
     public void setObservateur(GUI observateur) {
         this.observateur = observateur;
     }
 
+    /**
+     * Affiche la matrice de la même forme que les cartes
+     *
+     * @return
+     */
     @Override
     public String toString() {
         String res = "";

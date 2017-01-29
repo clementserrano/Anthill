@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *
+ * Fourmi, agent de la simulation parcourant la grille,
+ * récupère les nourritures des sources qu'il trouve de manière aléatoire,
+ * puis retourne à la fourmilière en prenant le même chemin
  * @author clementserrano
  */
 public class Fourmi {
@@ -18,6 +20,12 @@ public class Fourmi {
     private Environnement e;
     private HashMap<String, Cellule> hmap;
 
+    /**
+     * Constructeur
+     * @param x
+     * @param y
+     * @param e
+     */
     public Fourmi(int x, int y, Environnement e) {
         this.x = x;
         this.y = y;
@@ -30,23 +38,30 @@ public class Fourmi {
         this.e = e;
 
     }
-    
+
+    /**
+     * Déplace la fourmi selon son état : "recherche" ou "retour"
+     */
     public void deplacement() {
         if (etat == "recherche") {
-            
+
             deplacerAller();
+            // Mémorise le chemin
             int[] pos = {this.x, this.y};
             chemin.add(pos);
 
         } else if (etat == "retour" && chemin.size() > 1) {
-            chemin.remove(chemin.size()-1);
+            // Prend le même chemin parcouru à l'aller
+            chemin.remove(chemin.size() - 1);
             int x = chemin.get(chemin.size() - 1)[0];
             int y = chemin.get(chemin.size() - 1)[1];
             e.getGrille()[this.x][this.y].removeFourmi();
             this.x = x;
             this.y = y;
             e.getGrille()[this.x][this.y].addFourmi();
+            // Dépose les phéromones seulement au retour
             depotPheromone(this.x, this.y);
+            // Si la fourmi arrive sur la fourmiliere, elle repart en "recherche"
             if (e.getGrille()[this.x][this.y] == e.getFourmiliere()) {
                 e.getFourmiliere().addQteNourriture(this.qteNourriture);
                 this.qteNourriture = 0;
@@ -56,33 +71,41 @@ public class Fourmi {
         }
     }
 
+    /**
+     * Construit le dictionnaire des directions correspondantes aux cellules adjacente à la fourmi
+     * @return
+     */
     public HashMap<String, Cellule> regarderAutour() {
         hmap = new HashMap<>();
         Cellule[][] grille = e.getGrille();
-        hmap.put("N", grille[x-1][y]);      // x = ligne (vers la droite), y = colonne(vers le bas)
-        hmap.put("NE", grille[x-1][y + 1]);
-        hmap.put("E", grille[x][y+1]);
+        hmap.put("N", grille[x - 1][y]);      // x = ligne (vers la droite), y = colonne(vers le bas)
+        hmap.put("NE", grille[x - 1][y + 1]);
+        hmap.put("E", grille[x][y + 1]);
         hmap.put("SE", grille[x + 1][y + 1]);
-        hmap.put("S", grille[x+1][y]);
+        hmap.put("S", grille[x + 1][y]);
         hmap.put("SO", grille[x + 1][y - 1]);
-        hmap.put("O", grille[x][y-1]);
+        hmap.put("O", grille[x][y - 1]);
         hmap.put("NO", grille[x - 1][y - 1]);
         return hmap;
     }
 
+    /**
+     * Déplacement de la fourmi lorsqu'elle est dans l'état "recherche".
+     * Le déplacement de la fourmi est aléatoire mais elle ne peut pas revenir en arrière sauf si c'est son seul choix.
+     */
     public void deplacerAller() {
 
         regarderAutour();
         int p0, p1, p2, p3, p4, p5, p6, p7;             //qte phéromone
         int c0, c1, c2, c3, c4, c5, c6, c7;             //poids case
         c0 = c1 = c2 = c3 = c4 = c5 = c6 = c7 = 0;
-        p0 = e.getGrille()[x+1][y].getQtePheromone();
+        p0 = e.getGrille()[x + 1][y].getQtePheromone();
         p1 = e.getGrille()[x + 1][y - 1].getQtePheromone();
-        p2 = e.getGrille()[x][y-1].getQtePheromone();
+        p2 = e.getGrille()[x][y - 1].getQtePheromone();
         p3 = e.getGrille()[x - 1][y - 1].getQtePheromone();
-        p4 = e.getGrille()[x-1][y].getQtePheromone();
+        p4 = e.getGrille()[x - 1][y].getQtePheromone();
         p5 = e.getGrille()[x - 1][y + 1].getQtePheromone();
-        p6 = e.getGrille()[x][y+1].getQtePheromone();
+        p6 = e.getGrille()[x][y + 1].getQtePheromone();
         p7 = e.getGrille()[x + 1][y + 1].getQtePheromone();
 
         switch (this.direction) {
@@ -189,8 +212,7 @@ public class Fourmi {
         for (int i = 0; i < sommeC; i++) {
             if (i < c0) {
                 tableauDeCi[i] = "S";
-            }
-            else if (i < c1 + c0) {
+            } else if (i < c1 + c0) {
                 tableauDeCi[i] = "SO";
             } else if (i < c2 + c1 + c0) {
                 tableauDeCi[i] = "O";
@@ -206,35 +228,28 @@ public class Fourmi {
                 tableauDeCi[i] = "SE";
             }
         }
-        
-        
+
         Cellule cell;
         String nouvDir;
         int essais = 0;
         do {
             int rdm = (int) (Math.random() * (sommeC));
-            /*for(int i = 0; i<tableauDeCi.length; i++){
-                System.out.print(tableauDeCi[i] + " ");
-            }*/
-            essais ++;
+            essais++;
             nouvDir = tableauDeCi[rdm];
             cell = hmap.get(nouvDir);
-            
-            //System.out.println("\n" +rdm+" "+nouvDir);
         } while (cell instanceof Obstacle && essais < 500);
-        if(essais >= 500){
+        if (essais >= 500) {
             this.direction = this.demiTour();
             cell = hmap.get(this.direction);
-        }
-        else{
+        } else {
             this.direction = nouvDir;
         }
-        
+
         e.getGrille()[this.x][this.y].removeFourmi();
 
         this.x = cell.getX();
         this.y = cell.getY();
-        
+
         cell.addFourmi();
 
         if (cell instanceof Source) {
@@ -244,31 +259,52 @@ public class Fourmi {
             this.qteNourriture += 1;
             this.etat = "retour";
         }
-        
-        
+
     }
-    
-    public void deplacerDijkstra(int x, int y){
-        // Algorithme A*
-        
-    }
-    
+
+    /**
+     * Dépose les phéromones dans la cellule de coordonnées fournies
+     * @param x
+     * @param y
+     */
     public void depotPheromone(int x, int y) {
         e.getGrille()[x][y].addQtePheromone();
     }
 
     private String demiTour() {
-        switch(this.direction){
-            case "N": return "S"; case "NE": return "SO"; case "E": return "O"; case "SE": return "NO";
-            case "S": return "N"; case "SO": return "NE"; case "O": return "E"; case "NO": return "SE";
+        switch (this.direction) {
+            case "N":
+                return "S";
+            case "NE":
+                return "SO";
+            case "E":
+                return "O";
+            case "SE":
+                return "NO";
+            case "S":
+                return "N";
+            case "SO":
+                return "NE";
+            case "O":
+                return "E";
+            case "NO":
+                return "SE";
         }
         return null;
     }
 
+    /**
+     * Renvoi la ligne de la fourmi
+     * @return
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Renvoi la colonne de la fourmi
+     * @return
+     */
     public int getY() {
         return y;
     }
