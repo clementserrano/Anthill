@@ -97,7 +97,7 @@ public class Fourmi {
 
         regarderAutour();
         int p0, p1, p2, p3, p4, p5, p6, p7;             //qte phéromone
-        int c0, c1, c2, c3, c4, c5, c6, c7;             //poids case
+        int c0, c1, c2, c3, c4, c5, c6, c7;             //poids case, c0 correspond TOUJOURS au sud etc
         c0 = c1 = c2 = c3 = c4 = c5 = c6 = c7 = 0;
         p0 = e.getGrille()[x + 1][y].getQtePheromone();
         p1 = e.getGrille()[x + 1][y - 1].getQtePheromone();
