@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 /**
  * Fourmi, agent de la simulation parcourant la grille,
- * récupère les nourritures des sources qu'il trouve de manière aléatoire,
+ * récupère les nourritures des sources qu'elle trouve de manière aléatoire,
  * puis retourne à la fourmilière en prenant le même chemin
  * @author clementserrano
  */
