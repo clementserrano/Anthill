@@ -2,14 +2,18 @@ package Anthill.util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 
 /**
- *
+ * Permet de lire un fichier
  * @author chris
  */
 public class Readfile {
 
+    /**
+     * Lit le fichier ligne par ligne et renvoit un String avec un 'l' séparant chaque ligne
+     * @param fichier
+     * @return
+     */
     public String read(String fichier){
         String res = "";
         try{
