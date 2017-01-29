@@ -17,7 +17,7 @@ public class Source extends Cellule {
     }
 
     /**
-     * Renvoi la quantité de nourriture de la source
+     * Renvoie la quantité de nourriture de la source
      * @return
      */
     public int getQteNourriture() {

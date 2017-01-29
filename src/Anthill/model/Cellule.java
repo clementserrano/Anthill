@@ -41,7 +41,7 @@ public abstract class Cellule {
     }
 
     /**
-     * Renvoi le numéro de la ligne de la cellule
+     * Renvoie le numéro de la ligne de la cellule
      *
      * @return
      */
@@ -59,7 +59,7 @@ public abstract class Cellule {
     }
 
     /**
-     * Renvoi le numéro de la colonne de la cellule
+     * Renvoie le numéro de la colonne de la cellule
      *
      * @return
      */
@@ -77,7 +77,7 @@ public abstract class Cellule {
     }
 
     /**
-     * Renvoi la quantité de phéromones de la cellule
+     * Renvoie la quantité de phéromones de la cellule
      *
      * @return
      */
@@ -86,7 +86,7 @@ public abstract class Cellule {
     }
 
     /**
-     * Renvoi un espace pour une Cellule
+     * Renvoie un espace pour une Cellule
      *
      * @return un espace
      */
@@ -112,7 +112,7 @@ public abstract class Cellule {
     }
 
     /**
-     * Renvoi le nombre de fourmis dans la cellule
+     * Renvoie le nombre de fourmis dans la cellule
      *
      * @return le nombre de fourmis dans la cellule
      */

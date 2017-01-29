@@ -18,7 +18,7 @@ public class Fourmiliere extends Cellule {
     }
 
     /**
-     * Renvoi la quantité de nourriture de la fourmilière
+     * Renvoie la quantité de nourriture de la fourmilière
      * @return
      */
     public int getQteNourriture() {

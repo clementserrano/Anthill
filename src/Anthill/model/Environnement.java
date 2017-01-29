@@ -28,7 +28,7 @@ public class Environnement {
     /**
      * Constructeur
      *
-     * @param filename Juste le nom.txt, les cartes doivent être ranger dans
+     * @param filename Juste le nom.txt, les cartes doivent être rangées dans
      * src/Anthill/cartes.
      * @param nbFourmis
      * @param timeSleep

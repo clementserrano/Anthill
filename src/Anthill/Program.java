@@ -5,7 +5,7 @@ import Anthill.view.GUI;
 /**
  * Contient le main() du projet qui crée l'interface graphique et affiche le
  * formulaire. Puis bloque tant que le formulaire n'a pas été soumis. Une fois
- * le formulaire soumis, l'environnement et créer et la simulation s'affiche
+ * le formulaire soumis, l'environnement est créé et la simulation s'affiche.
  *
  * @author clementserrano
  */

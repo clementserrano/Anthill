@@ -61,7 +61,7 @@ public class Fourmi {
             e.getGrille()[this.x][this.y].addFourmi();
             // Dépose les phéromones seulement au retour
             depotPheromone(this.x, this.y);
-            // Si la fourmi arrive sur la fourmiliere, elle repart en "recherche"
+            // Si la fourmi arrive sur la fourmilière, elle repart en "recherche"
             if (e.getGrille()[this.x][this.y] == e.getFourmiliere()) {
                 e.getFourmiliere().addQteNourriture(this.qteNourriture);
                 this.qteNourriture = 0;
@@ -72,7 +72,7 @@ public class Fourmi {
     }
 
     /**
-     * Construit le dictionnaire des directions correspondantes aux cellules adjacente à la fourmi
+     * Construit le dictionnaire des directions correspondant aux cellules adjacentes à la fourmi
      * @return
      */
     public HashMap<String, Cellule> regarderAutour() {
@@ -294,7 +294,7 @@ public class Fourmi {
     }
 
     /**
-     * Renvoi la ligne de la fourmi
+     * Renvoie la ligne de la fourmi
      * @return
      */
     public int getX() {
@@ -302,7 +302,7 @@ public class Fourmi {
     }
 
     /**
-     * Renvoi la colonne de la fourmi
+     * Renvoie la colonne de la fourmi
      * @return
      */
     public int getY() {
