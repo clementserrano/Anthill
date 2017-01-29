@@ -8,7 +8,6 @@ public class Source extends Cellule {
     private int qteNourriture;
     public Source(int x, int y){
         super(x,y);
-        this.qteNourriture = 5;
     }
 
     public int getQteNourriture() {
