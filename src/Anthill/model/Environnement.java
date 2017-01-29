@@ -18,7 +18,7 @@ public class Environnement {
     private int nombreDeColonnes;
     private int nombreDeSources;
     private int totalNourriture;
-    private final int nombreDeFourmis = 4;
+    private final int nombreDeFourmis = 40;
     private Fourmiliere fourmiliere;
     private ArrayList<Source> sources;
     private ArrayList<Fourmi> fourmis;
