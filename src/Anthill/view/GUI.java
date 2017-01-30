@@ -1,7 +1,6 @@
 package Anthill.view;
 
 import Anthill.model.Environnement;
-import Anthill.util.Images;
 import Anthill.util.Taille;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
@@ -25,6 +24,9 @@ public class GUI extends JFrame {
     private int qteNourriture;
     private volatile boolean ready = false;
     
+    /**
+     * Constructeur, affiche l'interface avec formulaire
+     */
     public GUI() {
         panels = new JPanel(new CardLayout());
         form = new Form(this);
@@ -38,6 +40,9 @@ public class GUI extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Affiche la simulation
+     */
     public void showGrille() {
         Environnement environnement = new Environnement(carte, nbFourmis, timeSleep, qteNourriture);
         Taille.setEnvironnement(environnement);
@@ -54,30 +59,57 @@ public class GUI extends JFrame {
         environnement.run();
     }
 
+    /**
+     * Met à jour la grille selon les modifications de l'environnement
+     */
     public void update() {
         grille.update();
     }
 
+    /**
+     * Modifie la carte de la simulation
+     * @param carte
+     */
     public void setCarte(String carte) {
         this.carte = carte;
     }
 
+    /**
+     * Modifie le nombre de fourmis de la simulation
+     * @param nbFourmis
+     */
     public void setNbFourmis(int nbFourmis) {
         this.nbFourmis = nbFourmis;
     }
 
+    /**
+     * Modifie le temps entre chaque tour de la simulation
+     * @param timeSleep
+     */
     public void setTimeSleep(int timeSleep) {
         this.timeSleep = timeSleep;
     }
     
+    /**
+     * Modifie la quantité de nourriture dans chaque source de la simulation
+     * @param qteNourriture
+     */
     public void setQteNourriture(int qteNourriture){
         this.qteNourriture = qteNourriture;
     }
 
+    /**
+     * Notifie le programme que la simulation est prête a être lancée
+     * @param ready
+     */
     public void setReady(boolean ready) {
         this.ready = ready;
     }
 
+    /**
+     * Indique si la simulation est prête a être lancée
+     * @return
+     */
     public boolean isReady() {
         return ready;
     }

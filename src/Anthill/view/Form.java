@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Anthill.view;
 
 import java.awt.event.ActionEvent;
@@ -10,7 +5,7 @@ import java.io.File;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * JPanel affichant le formulaire de saisie pour lancer la simulation
  * @author clementserrano
  */
 public class Form extends javax.swing.JPanel {
@@ -18,17 +13,19 @@ public class Form extends javax.swing.JPanel {
     private GUI gui;
     
     /**
-     * Creates new form Form
-     * @param gui
+     * Constructeur
+     * @param gui la fenêtre JFrame
      */
     public Form(GUI gui) {
         initComponents();
         this.gui = gui;
         
+        // Définit les valeurs par défaut
         textNbFourmis.setText("1");
         textTimeSleep.setText("500");
         textQteNourriture.setText("1");
         
+        // Récupère toutes les cartes du répertoire
         File folder = new File("src/Anthill/ressources/cartes");
         File[] listOfFiles = folder.listFiles();
         
@@ -43,6 +40,7 @@ public class Form extends javax.swing.JPanel {
             }
         }
         
+        // Définit le comportement du bouton
         buttonLancer.addActionListener((ActionEvent ae) -> {
             lancerSimulation();
         });
@@ -50,6 +48,8 @@ public class Form extends javax.swing.JPanel {
     
     private void lancerSimulation(){
         
+        // Récupère les saisies de l'utilisateurs et les vérifie
+        // Si une donnée est mal saisise, un message d'erreur s'affiche et le programme s'arrête
         String carte = (String)comboBoxCartes.getSelectedItem();
         
         int nbFourmis;
@@ -76,10 +76,12 @@ public class Form extends javax.swing.JPanel {
             return;
         }
         
+        // Transmet les données à la fenêtre
         gui.setCarte(carte);
         gui.setNbFourmis(nbFourmis);
         gui.setTimeSleep(timeSleep);
         gui.setQteNourriture(qteNourriture);
+        // Notifie la fenêtre que la simulation est prête à être lancée
         gui.setReady(true);
     }
 
