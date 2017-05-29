@@ -6,3 +6,8 @@
 /nbproject/genfiles.properties
 /nbproject/licenseheader.txt
 /nbproject/private/
+\.idea/
+
+out/
+
+Anthill\.iml
